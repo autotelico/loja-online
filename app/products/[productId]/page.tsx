@@ -1,6 +1,6 @@
 'use client'
 import { useSearchParams } from "next/navigation"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 import {Item} from '../../components/ItemList'
 
 export default function ProductPage(): JSX.Element {
