@@ -23,6 +23,7 @@ export default function Navbar({
       >
         <CgClose
           size={25}
+          title="Fechar"
           onClick={() => setDisplayNavbar(!displayNavbar)}
           id="close-navbar-button"
           className="absolute right-1 md:right-3 top-3 rounded-full flex items-center justify-center cursor-pointer"
