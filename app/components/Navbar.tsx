@@ -1,5 +1,5 @@
+import { CgClose } from 'react-icons/cg';
 import { Item } from './ItemList';
-import { FaWindowClose } from 'react-icons/fa';
 
 export default function Navbar({
   displayNavbar,
@@ -17,15 +17,15 @@ export default function Navbar({
       <nav
         className={
           displayNavbar
-            ? 'fixed right-0 top-0 w-[30%] h-full bg-slate-100 border-l border-gray-500 ease-in-out duration-500'
-            : 'fixed right-[-100%] top-0 w-[30%] h-full bg-slate-100 border-l border-gray-500 ease-in-out duration-500'
+            ? 'fixed right-0 top-0 w-[80%] sm:w-[60%] md:w-[40%] lg:w-[30%] h-full bg-slate-100 border-l border-gray-500 ease-in-out duration-500'
+            : 'fixed right-[-100%] top-0 w-[80%] sm:w-[60%] md:w-[40%] lg:w-[30%] h-full bg-slate-100 border-l border-gray-500 ease-in-out duration-500'
         }
       >
-        <FaWindowClose
+        <CgClose
           size={25}
           onClick={() => setDisplayNavbar(!displayNavbar)}
           id="close-navbar-button"
-          className="absolute right-5 top-5 rounded-full flex items-center justify-center cursor-pointer"
+          className="absolute right-1 md:right-3 top-3 rounded-full flex items-center justify-center cursor-pointer"
         />
         <div className="flex flex-col gap-5 py-8 px-4">
           <h1 className="text-4xl font-bold">Sua Loja</h1>

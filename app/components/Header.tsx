@@ -25,7 +25,7 @@ export default function Header({
         />
       </div>
 
-      <div className="flex gap-20">
+      <div className="flex gap-10 sm:gap-20">
         <ul className="hidden lg:flex gap-10">
           <li className="hover:text-[#f2295b] cursor-pointer">Página Inicial</li>
           <li className="hover:text-[#f2295b] cursor-pointer">Sobre nós</li>
