@@ -14,10 +14,14 @@ export interface Item {
   title: string;
 }
 
-export default function ItemList({itemsInCart, addItemToCart, removeItemFromCart}: {
-  itemsInCart: Item[],
-  addItemToCart: any,
-  removeItemFromCart: any,
+export default function ItemList({
+  itemsInCart,
+  addItemToCart,
+  removeItemFromCart,
+}: {
+  itemsInCart: Item[];
+  addItemToCart: any;
+  removeItemFromCart: any;
 }): JSX.Element {
   const [storeItems, setStoreItems] = useState<Item[]>([]);
 
@@ -35,11 +39,7 @@ export default function ItemList({itemsInCart, addItemToCart, removeItemFromCart
       <div className="grid gap-20 sm:grid-cols-2 md:grid-cols-3">
         <Suspense fallback={<p>Carregando catálogo...</p>}>
           {storeItems.map((item: Item) => (
-            <ItemUnit
-              key={item.id}
-              itemInfo={item}
-              addToCart={addItemToCart}
-            />
+            <ItemUnit key={item.id} itemInfo={item} addToCart={addItemToCart} />
           ))}
         </Suspense>
       </div>
@@ -58,7 +58,9 @@ function ItemUnit({
     <div className="flex flex-col items-center text-center">
       <p className="font-bold">{itemInfo.title}</p>
       <img src={itemInfo.image} alt={itemInfo.title} className="h-[100px]" />
-      <button onClick={() => addToCart(itemInfo)}>Adicionar ao Carrinho</button>
+      <button className="bg-[#f2295b] py-3 px-6 rounded-xl font-semibold" onClick={() => addToCart(itemInfo)}>
+        Adicionar ao Carrinho
+      </button>
     </div>
   );
 }

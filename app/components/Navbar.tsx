@@ -20,7 +20,8 @@ export default function Navbar({
           : 'fixed right-[-100%] top-0 w-[30%] h-full bg-slate-300 border-l-4 border-gray-500 ease-in-out duration-500'
       }
     >
-      <FaWindowClose size={25}
+      <FaWindowClose
+        size={25}
         onClick={() => setDisplayNavbar(!displayNavbar)}
         id="close-navbar-button"
         className="absolute right-5 top-5 rounded-full flex items-center justify-center cursor-pointer"
@@ -28,7 +29,7 @@ export default function Navbar({
       <div className="flex flex-col gap-5 py-8 px-4">
         <h1 className="text-4xl font-bold">Sua Loja</h1>
         {cartItemList.map((cartItem) => (
-          <CartItemUnit cartItem={cartItem} removeItem={handleRemove} />
+          <CartItemUnit key={cartItem.id} cartItem={cartItem} removeItem={handleRemove} />
         ))}
         {/* <div id="darkener" className="fixed top-0 left-0 bg-slate-800 opacity-40 h-full w-full"></div> */}
       </div>
@@ -43,5 +44,10 @@ function CartItemUnit({
   cartItem: Item;
   removeItem: any;
 }): JSX.Element {
-  return <div>sss</div>;
+  return (
+    <div>
+      <p>{cartItem.title}</p>
+      <p>${cartItem.price}</p>
+    </div>
+  );
 }

@@ -14,9 +14,9 @@ export default function Header({showNavbar, setShowNavbar}: {
         <img src="https://websitedemos.net/custom-printing-04/wp-content/uploads/sites/222/2018/06/site-logo-free-img-1.png" alt="" />
       </div>
       <ul className="flex gap-10">
-        <li className='hover:text-red-500'>Página Inicial</li>
-        <li className='hover:text-red-500'>Sobre nós</li>
-        <li className='hover:text-red-500'>Fale Conosco</li>
+        <li className='hover:text-[#f2295b]'>Página Inicial</li>
+        <li className='hover:text-[#f2295b]'>Sobre nós</li>
+        <li className='hover:text-[#f2295b]'>Fale Conosco</li>
         <div onClick={() => setShowNavbar(!showNavbar)} className='cursor-pointer'>
          <IoMenu />
         </div>
