@@ -29,12 +29,12 @@ export default function Navbar({
           className="absolute right-1 md:right-3 top-3 rounded-full flex items-center justify-center cursor-pointer"
         />
         <div className="flex flex-col gap-5 py-8 px-4">
-          <h1 className="text-4xl font-bold">Sua Loja</h1>
+          <h1 className="text-4xl font-bold">Seu Carrinho</h1>
           {cartItemList.map((cartItem) => (
             <CartItemUnit
               key={cartItem.id}
               cartItem={cartItem}
-              removeItem={handleRemove}
+              handleRemove={handleRemove}
             />
           ))}
         </div>
@@ -49,15 +49,22 @@ export default function Navbar({
 
 function CartItemUnit({
   cartItem,
-  removeItem,
+  handleRemove,
 }: {
   cartItem: Item;
-  removeItem: any;
+  handleRemove: any;
 }): JSX.Element {
+  const valueInReais: string = String(cartItem.price).includes('.')
+  ? String(cartItem.price).replace('.', ',')
+  : String(cartItem.price)
+  
   return (
-    <div>
+    <div className='bg-[#f2295b] p-3 rounded-lg'>
       <p>{cartItem.title}</p>
-      <p>${cartItem.price}</p>
+      <p>R$ {valueInReais}</p>
+      <button className='text-sm font-semibold bg-[#de1144] py-2 px-4 rounded-xl cursor-pointer' onClick={() => handleRemove(cartItem)}>
+        Remover
+      </button>
     </div>
   );
 }

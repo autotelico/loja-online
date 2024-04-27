@@ -6,7 +6,7 @@ import {Item} from '../../components/ItemList'
 export default function ProductPage(): JSX.Element {
     const searchParams = useSearchParams()
     const router = useRouter()
-    const title: string = searchParams.get('product')!
+    const title: string = searchParams.get('title')!
     
     return (
         <div id='product'>
