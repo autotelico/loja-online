@@ -7,7 +7,7 @@ export default function MenuNavbar({displayMenuNavbar, setDisplayMenuNavbar}: {
   return (
     <>
     <div className={displayMenuNavbar ? "fixed top-0 left-0 w-full h-full bg-slate-100 -z-10 " : ""}></div>
-    <nav className={displayMenuNavbar ? "fixed left-0 top-0 w-[40%] h-full bg-slate-100 border-r border-gray-500 ease-out duration-300" : "fixed left-[-100%] top-0 w-[40%] h-full bg-gray-300 border-r border-gray-500 ease-in duration-300"}>
+    <nav className={displayMenuNavbar ? "fixed left-0 top-0 w-[80%] sm:w-[60%] md:w-[40%] lg:w-[30%] h-full bg-slate-100 border-r border-gray-500 ease-out duration-300" : "fixed left-[-100%] top-0 w-[40%] h-full bg-gray-300 border-r border-gray-500 ease-in duration-300"}>
       <CgClose className="absolute right-3 top-3"/>
       <div className="p-5">
         <img
