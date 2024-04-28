@@ -21,7 +21,7 @@ export default function Header({
       <div className="text-4xl">
         <img
           src="https://websitedemos.net/custom-printing-04/wp-content/uploads/sites/222/2018/06/site-logo-free-img-1.png"
-          alt=""
+          alt="Logo da empresa"
         />
       </div>
 

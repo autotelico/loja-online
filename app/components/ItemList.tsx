@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export interface Item {
   category: string;
@@ -55,7 +56,10 @@ function ItemUnit({
     <div className="flex flex-col items-center text-center">
       <p className="font-bold">{itemInfo.title}</p>
       <img src={itemInfo.image} alt={itemInfo.title} className="h-[100px]" />
-      <button onClick={() => router.push(`products/${itemInfo.title}`)} >Ver detalhes</button>
+      <Link href={{
+        pathname: `/products/${itemInfo.title}`,
+        query: {...itemInfo, rate: itemInfo.rating.rate, count: itemInfo.rating.count},
+      }} className='bg-[#f2295b] py-3 px-6 mt-3 rounded-xl font-semibold'>Ver detalhes</Link>
       <button className="bg-[#f2295b] py-3 px-6 mt-3 rounded-xl font-semibold" onClick={() => addToCart(itemInfo)}>
         Adicionar ao Carrinho
       </button>
