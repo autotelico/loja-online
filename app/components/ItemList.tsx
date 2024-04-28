@@ -35,7 +35,7 @@ export default function ItemList({
       <div className="grid gap-20 sm:grid-cols-2 md:grid-cols-3">
         <Suspense fallback={<p>Carregando catálogo...</p>}>
           {storeItems?.map((item: Item) => (
-            <ItemUnit key={item.id} itemInfo={item} addToCart={addItemToCart} />
+            <ItemUnit key={item.id} itemInfo={item} addToCart={addItemToCart} cartItems={itemsInCart} />
           ))}
         </Suspense>
       </div>
@@ -46,9 +46,11 @@ export default function ItemList({
 function ItemUnit({
   itemInfo,
   addToCart,
+  cartItems,
 }: {
   itemInfo: any;
   addToCart: any;
+  cartItems: Item[];
 }): JSX.Element {
   const router = useRouter()
 
@@ -58,7 +60,7 @@ function ItemUnit({
       <img src={itemInfo.image} alt={itemInfo.title} className="h-[100px]" />
       <Link href={{
         pathname: `/products/${itemInfo.title}`,
-        query: {...itemInfo, rate: itemInfo.rating.rate, count: itemInfo.rating.count},
+        query: {...itemInfo, rate: itemInfo.rating.rate, count: itemInfo.rating.count, state: JSON.stringify(cartItems)},
       }} className='bg-[#f2295b] py-3 px-6 mt-3 rounded-xl font-semibold'>Ver detalhes</Link>
       <button className="bg-[#f2295b] py-3 px-6 mt-3 rounded-xl font-semibold" onClick={() => addToCart(itemInfo)}>
         Adicionar ao Carrinho

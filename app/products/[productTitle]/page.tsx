@@ -1,15 +1,26 @@
 'use client';
 import { useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/navigation';
 import { Item } from '../../components/ItemList';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export default function ProductPage({
   params,
 }: {
   params: { productTitle: string };
 }): JSX.Element {
+  const [cartItems, setCartItems] = useState<Item[]>([])
   const searchParams = useSearchParams();
-  const router = useRouter();
+
+  useEffect(() => {
+    if (!cartItems.length) {
+      setCartItems(JSON.parse(searchParams.get('state')!))
+      console.log('state: ', searchParams.get('state'));
+    } else {
+      console.log(cartItems);
+      
+    }
+  }, [])
 
   return (
     <div id="product">
@@ -21,7 +32,12 @@ export default function ProductPage({
           <p>Nota média: {searchParams.get('rate')}</p>
         </div>
         <button className='bg-[#f2295b] w-[200px] my-4 text-center rounded-lg text-xl cursor-pointer'>Adicionar ao Carrinho</button>
-      <div className='bg-[#f2295b] w-[100px] text-center rounded-lg text-lg cursor-pointer' onClick={() => router.back()}>Voltar</div>
+      <Link href={{
+        pathname: '/',
+        query: {
+          state: JSON.stringify(cartItems)
+        },
+      }} className='bg-[#f2295b] w-[100px] text-center rounded-lg text-lg cursor-pointer'>Voltar</Link>
       
     </div>
   );
