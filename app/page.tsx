@@ -8,10 +8,16 @@ import { useSearchParams } from 'next/navigation';
 
 export default function MainPage(): JSX.Element {
   return (
-    <Suspense fallback={<div className='fixed top-0 left-0 w-full h-full bg-red-500'>Carregando catálogo...</div>}>
+    <Suspense
+      fallback={
+        <div className="fixed top-0 left-0 w-full h-full bg-red-500">
+          Carregando catálogo...
+        </div>
+      }
+    >
       <Home />
     </Suspense>
-  )
+  );
 }
 
 function Home() {
@@ -19,24 +25,26 @@ function Home() {
   const [cartItems, setCartItems] = useState<Item[]>([]);
   const [navbar, setNavbar] = useState<boolean>(false);
   const [menuNavbar, setMenuNavbar] = useState<boolean>(false);
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (searchParams.get('stateCartItems')) {
-      const prevCartItems: Item[] = JSON.parse(searchParams.get('stateCartItems')!)
-      setCartItems(prevCartItems)
-    }
-
-    if (!storeItems.length) {
-      try {
-        getItems().then((data) => setStoreItems(data));
-      } catch (err: unknown) {
-        if (err instanceof Error) {
-          throw new Error(err.message);
-        }
-      }
+      const prevCartItems: Item[] = JSON.parse(
+        searchParams.get('stateCartItems')!
+      );
+      setCartItems(prevCartItems);
     }
   }, []);
+
+  if (!storeItems.length) {
+    try {
+      getItems().then((data) => setStoreItems(data));
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        throw new Error(err.message);
+      }
+    }
+  }
 
   const addToCart = (itemToAdd: Item): void => {
     setCartItems([...cartItems, itemToAdd]);
@@ -49,7 +57,7 @@ function Home() {
   };
 
   return (
-    <Suspense fallback={<p>Carregando catálogo...</p>}>
+    <>
       <Header
         showNavbar={navbar}
         setShowNavbar={setNavbar}
@@ -74,6 +82,6 @@ function Home() {
         storeItems={storeItems}
         setStoreItems={setStoreItems}
       />
-    </Suspense>
+    </>
   );
 }
