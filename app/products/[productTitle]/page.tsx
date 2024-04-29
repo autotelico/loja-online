@@ -14,11 +14,8 @@ export default function ProductPage({
 
   useEffect(() => {
     if (!cartItems.length) {
-      setCartItems(JSON.parse(searchParams.get('state')!))
-      console.log('state: ', searchParams.get('state'));
-    } else {
-      console.log(cartItems);
-      
+      setCartItems(JSON.parse(searchParams.get('stateCartItems')!))
+      console.log('state: ', searchParams.get('stateCartItems'));
     }
   }, [])
 
@@ -31,11 +28,11 @@ export default function ProductPage({
           <p>Avaliações feitas: {searchParams.get('count')}</p>
           <p>Nota média: {searchParams.get('rate')}</p>
         </div>
-        <button className='bg-[#f2295b] w-[200px] my-4 text-center rounded-lg text-xl cursor-pointer'>Adicionar ao Carrinho</button>
+        <button className='bg-[#f2295b] w-[200px] my-4 text-center rounded-lg text-xl cursor-pointer' onClick={() => setCartItems([...cartItems, ])}>Adicionar ao Carrinho</button>
       <Link href={{
         pathname: '/',
         query: {
-          state: JSON.stringify(cartItems)
+          stateCartItems: JSON.stringify(cartItems)
         },
       }} className='bg-[#f2295b] w-[100px] text-center rounded-lg text-lg cursor-pointer'>Voltar</Link>
       

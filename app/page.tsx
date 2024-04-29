@@ -14,11 +14,9 @@ export default function Home() {
   const searchParams = useSearchParams()
 
   useEffect(() => {
-    if (searchParams.get('state')) {
-      const prevCartItems: Item[] = JSON.parse(searchParams.get('state')!)
+    if (searchParams.get('stateCartItems')) {
+      const prevCartItems: Item[] = JSON.parse(searchParams.get('stateCartItems')!)
       setCartItems(prevCartItems)
-      console.log('State i got back: ', typeof prevCartItems)
-      
     }
 
     if (!storeItems.length) {
