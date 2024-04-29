@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import ItemList, { Item, getItems } from './components/ItemList';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
@@ -41,7 +41,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <Suspense>
       <Header
         showNavbar={navbar}
         setShowNavbar={setNavbar}
@@ -66,6 +66,6 @@ export default function Home() {
         storeItems={storeItems}
         setStoreItems={setStoreItems}
       />
-    </>
+    </Suspense>
   );
 }
