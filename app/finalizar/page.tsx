@@ -6,7 +6,7 @@ import { Suspense } from 'react';
 
 export default function CheckoutPage(): JSX.Element {
     return (
-        <Suspense >
+        <Suspense fallback={<p>Caradoisajdio</p>}>
             <Checkout />
         </Suspense>
     )

@@ -17,7 +17,7 @@ export default function Header({
   setMenuNavbar: any;
 }): JSX.Element {
   return (
-    <header className="flex justify-between items-center text-2xl py-4 px-16 sm:px-32">
+    <header className="flex justify-between items-center text-2xl py-4 px-10 sm:px-32">
       <IoMenu
         className="lg:hidden cursor-pointer"
         onClick={() => setMenuNavbar(!menuNavbar)}

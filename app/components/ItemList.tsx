@@ -30,7 +30,7 @@ export default function ItemList({
 }): JSX.Element {
 
   return (
-    <div id="item-list" className="px-32">
+    <div id="item-list" className="px-10 sm:px-32">
       <h2 className="text-3xl font-bold my-11 text-center sm:text-start">Catálogo</h2>
       <div className="grid gap-20 sm:grid-cols-2 md:grid-cols-3">
         <Suspense fallback={<p>Carregando catálogo...</p>}>

@@ -7,7 +7,9 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Loja Online',
   description: 'Suas vendas, agora também no digital!',
-  openGraph: {},
+  openGraph: {
+    images: '/'
+  },
 };
 
 export default function RootLayout({
