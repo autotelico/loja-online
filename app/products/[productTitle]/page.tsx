@@ -15,16 +15,16 @@ export default function ProductPage(): JSX.Element {
 
 function ProductDetails(): JSX.Element {
   const [cartItems, setCartItems] = useState<Item[]>([]);
+  const [itemAdicionadoMsg, setItemAdicionadoMsg] = useState<any>(null)
   const searchParams = useSearchParams();
   const selectedItem: Item = JSON.parse(searchParams.get('item')!);
-  let itemAdicionadoMsg: HTMLParagraphElement;
 
   useEffect(() => {
     if (!cartItems.length) {
       setCartItems(JSON.parse(searchParams.get('stateCartItems')!));
       console.log('state: ', searchParams.get('stateCartItems'));
+      setItemAdicionadoMsg(document.querySelector('#item-adicionado')!)
     }
-    itemAdicionadoMsg = document.querySelector('#item-adicionado')!;
   }, []);
 
   const handleClick = (): void => {
