@@ -55,13 +55,13 @@ function ItemUnit({
   const router = useRouter()
 
   return (
-    <div className="flex flex-col items-center text-center">
+    <div className="flex flex-col items-center justify-center gap-6 text-center bg-white rounded-xl py-3 px-10 hover:scale-110 duration-300">
       <p className="font-bold">{itemInfo.title}</p>
-      <img src={itemInfo.image} alt={itemInfo.title} className="h-[100px]" />
+      <img src={itemInfo.image} alt={itemInfo.title} title={itemInfo.title} className="h-[100px]" />
       <Link href={{
         pathname: `/products/${itemInfo.title}`,
         query: {...itemInfo, rate: itemInfo.rating.rate, count: itemInfo.rating.count, stateCartItems: JSON.stringify(cartItems), item: JSON.stringify(itemInfo)},
-      }} className='bg-[#f2295b] py-3 px-6 mt-3 rounded-xl font-semibold'>Ver mais</Link>
+      }} className='bg-[#f2295b] py-3 px-6 mt-3 rounded-xl font-semibold hover:bg-[#be2148f8] duration-300'>Ver mais</Link>
     </div>
   );
 }
