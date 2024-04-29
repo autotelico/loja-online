@@ -6,7 +6,15 @@ import Navbar from './components/Navbar';
 import MenuNavbar from './components/MenuNavbar';
 import { useSearchParams } from 'next/navigation';
 
-export default function Home() {
+export default function MainPage(): JSX.Element {
+  return (
+    <Suspense fallback={<div className='fixed top-0 left-0 w-full h-full bg-red-500'>Carregando catálogo...</div>}>
+      <Home />
+    </Suspense>
+  )
+}
+
+function Home() {
   const [storeItems, setStoreItems] = useState<Item[]>([]);
   const [cartItems, setCartItems] = useState<Item[]>([]);
   const [navbar, setNavbar] = useState<boolean>(false);
@@ -41,7 +49,7 @@ export default function Home() {
   };
 
   return (
-    <Suspense>
+    <Suspense fallback={<p>Carregando catálogo...</p>}>
       <Header
         showNavbar={navbar}
         setShowNavbar={setNavbar}
