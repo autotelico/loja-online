@@ -39,12 +39,19 @@ export default function Navbar({
             />
           ))}
         </div>
-        <Link href={{
-          pathname: '/finalizar',
-          query: {
-            stateCartItems: JSON.stringify(cartItemList)
-          }
-        }} >Finalizar Compra</Link>
+        {!!cartItemList.length && (
+          <Link
+            href={{
+              pathname: '/finalizar',
+              query: {
+                stateCartItems: JSON.stringify(cartItemList),
+              },
+            }}
+            className='block w-[200px] text-center bg-[#f2295b] font-bold py-2 px-4 rounded-xl mx-auto'
+          >
+            Finalizar Compra
+          </Link>
+        )}
       </nav>
       {/* <div
         id="darkener"
@@ -62,14 +69,17 @@ function CartItemUnit({
   handleRemove: any;
 }): JSX.Element {
   const valueInReais: string = String(cartItem.price).includes('.')
-  ? String(cartItem.price).replace('.', ',')
-  : String(cartItem.price)
-  
+    ? String(cartItem.price).replace('.', ',')
+    : String(cartItem.price);
+
   return (
-    <div className='bg-[#f2295b] p-3 rounded-lg'>
+    <div className="bg-[#f2295b] p-3 rounded-lg">
       <p>{cartItem.title}</p>
       <p>R$ {valueInReais}</p>
-      <button className='text-sm font-semibold bg-[#de1144] py-2 px-4 rounded-xl cursor-pointer' onClick={() => handleRemove(cartItem)}>
+      <button
+        className="text-sm font-semibold bg-[#de1144] py-2 px-4 rounded-xl cursor-pointer"
+        onClick={() => handleRemove(cartItem)}
+      >
         Remover
       </button>
     </div>
