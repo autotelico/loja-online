@@ -1,5 +1,6 @@
 import { CgClose } from 'react-icons/cg';
 import { Item } from './ItemList';
+import Link from 'next/link';
 
 export default function Navbar({
   displayNavbar,
@@ -38,6 +39,12 @@ export default function Navbar({
             />
           ))}
         </div>
+        <Link href={{
+          pathname: '/finalizar',
+          query: {
+            stateCartItems: JSON.stringify(cartItemList)
+          }
+        }} >Finalizar Compra</Link>
       </nav>
       {/* <div
         id="darkener"

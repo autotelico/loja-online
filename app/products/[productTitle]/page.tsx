@@ -11,6 +11,7 @@ export default function ProductPage({
 }): JSX.Element {
   const [cartItems, setCartItems] = useState<Item[]>([])
   const searchParams = useSearchParams();
+  const selectedItem: Item = JSON.parse(searchParams.get('item')!)
 
   useEffect(() => {
     if (!cartItems.length) {
@@ -18,6 +19,11 @@ export default function ProductPage({
       console.log('state: ', searchParams.get('stateCartItems'));
     }
   }, [])
+
+  const handleClick = (): void => {
+    setCartItems([...cartItems, selectedItem])
+    document.querySelector('#item-adicionado')?.classList.toggle('hidden')
+  }
 
   return (
     <div id="product">
@@ -28,7 +34,8 @@ export default function ProductPage({
           <p>Avaliações feitas: {searchParams.get('count')}</p>
           <p>Nota média: {searchParams.get('rate')}</p>
         </div>
-        <button className='bg-[#f2295b] w-[200px] my-4 text-center rounded-lg text-xl cursor-pointer' onClick={() => setCartItems([...cartItems, ])}>Adicionar ao Carrinho</button>
+        <button className='bg-[#f2295b] w-[200px] my-4 text-center rounded-lg text-xl cursor-pointer' onClick={handleClick}>Adicionar ao Carrinho</button>
+        <p id='item-adicionado' className='hidden text-[#f2295b]'>Item adicionado ao carrinho! ☺️</p>
       <Link href={{
         pathname: '/',
         query: {

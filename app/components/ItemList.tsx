@@ -60,11 +60,8 @@ function ItemUnit({
       <img src={itemInfo.image} alt={itemInfo.title} className="h-[100px]" />
       <Link href={{
         pathname: `/products/${itemInfo.title}`,
-        query: {...itemInfo, rate: itemInfo.rating.rate, count: itemInfo.rating.count, stateCartItems: JSON.stringify(cartItems)},
-      }} className='bg-[#f2295b] py-3 px-6 mt-3 rounded-xl font-semibold'>Ver detalhes</Link>
-      <button className="bg-[#f2295b] py-3 px-6 mt-3 rounded-xl font-semibold" onClick={() => addToCart(itemInfo)}>
-        Adicionar ao Carrinho
-      </button>
+        query: {...itemInfo, rate: itemInfo.rating.rate, count: itemInfo.rating.count, stateCartItems: JSON.stringify(cartItems), item: JSON.stringify(itemInfo)},
+      }} className='bg-[#f2295b] py-3 px-6 mt-3 rounded-xl font-semibold'>Ver mais</Link>
     </div>
   );
 }
