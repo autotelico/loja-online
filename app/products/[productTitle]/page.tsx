@@ -4,6 +4,7 @@ import { Item } from '../../components/ItemList';
 import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 
+
 export default function ProductPage(): JSX.Element {
   
   return (

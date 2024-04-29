@@ -4,7 +4,15 @@ import { Item } from '../components/ItemList';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
-export default function Checkout(): JSX.Element {
+export default function CheckoutPage(): JSX.Element {
+    return (
+        <Suspense >
+            <Checkout />
+        </Suspense>
+    )
+}
+
+function Checkout(): JSX.Element {
   const searchParams = useSearchParams();
   const itensAComprar: Item[] = JSON.parse(searchParams.get('stateCartItems')!);
 
