@@ -3,29 +3,28 @@ import { useSearchParams } from 'next/navigation';
 import { Item } from '../../components/ItemList';
 import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
-
+import { MdStarRate } from 'react-icons/md';
 
 export default function ProductPage(): JSX.Element {
-  
   return (
     <Suspense fallback={<p>Carregando detalhes do produto...</p>}>
       <ProductDetails />
     </Suspense>
-  )
+  );
 }
 
 function ProductDetails(): JSX.Element {
   const [cartItems, setCartItems] = useState<Item[]>([]);
   const searchParams = useSearchParams();
   const selectedItem: Item = JSON.parse(searchParams.get('item')!);
-  const itemAdicionadoMsg: HTMLParagraphElement =
-    document.querySelector('#item-adicionado')!;
+  let itemAdicionadoMsg: HTMLParagraphElement;
 
   useEffect(() => {
     if (!cartItems.length) {
       setCartItems(JSON.parse(searchParams.get('stateCartItems')!));
       console.log('state: ', searchParams.get('stateCartItems'));
     }
+    itemAdicionadoMsg = document.querySelector('#item-adicionado')!;
   }, []);
 
   const handleClick = (): void => {
@@ -41,28 +40,42 @@ function ProductDetails(): JSX.Element {
   };
 
   return (
-    <div id="product" className='bg-white'>
-      <h1 className="font-bold">{searchParams.get('title')!}</h1>
-      <img className="h-[400px]" src={searchParams.get('image')!} alt="" />
-      <div id="texto-detalhes">
-        <p>
-          R${' '}
-          {searchParams.get('price')?.includes('.')
-            ? searchParams.get('price')?.replace('.', ',')
-            : searchParams.get('price')}
-        </p>
-        <p>Avaliações feitas: {searchParams.get('count')}</p>
-        <p>Nota média: {searchParams.get('rate')}</p>
+    <div id="product" className="bg-white px-2 mx-2">
+      <div className="flex flex-col justify-center lg:grid lg:grid-cols-2 justify-items-center items-center">
+        <img className="h-[400px]" src={searchParams.get('image')!} alt="" />
+        <div id="right-side" className='relative'>
+          <div className="flex items-center justify-center gap-5">
+            <h1 className="font-bold text-center lg:text-start text-4xl max-w-[400px]">
+              {searchParams.get('title')!}
+            </h1>
+            <div className='flex items-center gap-1'>
+              <p className="text-2xl mt-1">{searchParams.get('rate')}</p>
+              <MdStarRate size={20} />
+              <span className='text-xs self-end'>({searchParams.get('count')})</span> 
+            </div>
+          </div>
+          <div
+            id="texto-detalhes"
+            className="flex flex-col justify-center mt-3 px-10"
+          >
+            <p className='font-semibold text-3xl'>
+              R${' '}
+              {searchParams.get('price')?.includes('.')
+                ? searchParams.get('price')?.replace('.', ',')
+                : searchParams.get('price')}
+            </p>
+          </div>
+          <button
+            className="bg-[#f2295b] w-full py-3 my-4 text-center rounded-lg text-xl font-semibold cursor-pointer"
+            onClick={handleClick}
+          >
+            Adicionar ao Carrinho
+          </button>
+          <p id="item-adicionado" className="hidden text-[#f2295b] absolute text-center mx-auto left-0 right-0">
+            Item adicionado ao carrinho! ☺️
+          </p>
+        </div>
       </div>
-      <button
-        className="bg-[#f2295b] w-[200px] my-4 text-center rounded-lg text-xl cursor-pointer"
-        onClick={handleClick}
-      >
-        Adicionar ao Carrinho
-      </button>
-      <p id="item-adicionado" className="hidden text-[#f2295b]">
-        Item adicionado ao carrinho! ☺️
-      </p>
       <Link
         href={{
           pathname: '/',
@@ -70,7 +83,7 @@ function ProductDetails(): JSX.Element {
             stateCartItems: JSON.stringify(cartItems),
           },
         }}
-        className="bg-[#f2295b] w-[100px] text-center rounded-lg text-lg cursor-pointer"
+        className="bg-[#f2295b] w-[100px] text-center rounded-lg text-lg cursor-pointer py-2 px-4 "
       >
         Voltar
       </Link>
