@@ -13,6 +13,7 @@ export interface Item {
     count: number;
   };
   title: string;
+  availableAmount: number;
 }
 
 export default function ItemList({

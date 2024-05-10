@@ -5,6 +5,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://loja-online-hdx.vercel.app/'),
   title: 'Loja Online',
   description: 'Suas vendas, agora também no digital!',
   openGraph: {
