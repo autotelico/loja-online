@@ -15,7 +15,7 @@ export default function ProductPage(): JSX.Element {
 
 function ProductDetails(): JSX.Element {
   const [cartItems, setCartItems] = useState<Item[]>([]);
-  const [itemAdicionadoMsg, setItemAdicionadoMsg] = useState<any>(null)
+  const [itemAdicionadoMsg, setItemAdicionadoMsg] = useState<any>(null);
   const searchParams = useSearchParams();
   const selectedItem: Item = JSON.parse(searchParams.get('item')!);
 
@@ -23,7 +23,7 @@ function ProductDetails(): JSX.Element {
     if (!cartItems.length) {
       setCartItems(JSON.parse(searchParams.get('stateCartItems')!));
       console.log('state: ', searchParams.get('stateCartItems'));
-      setItemAdicionadoMsg(document.querySelector('#item-adicionado')!)
+      setItemAdicionadoMsg(document.querySelector('#item-adicionado')!);
     }
   }, []);
 
@@ -41,24 +41,26 @@ function ProductDetails(): JSX.Element {
 
   return (
     <div id="product" className="bg-white px-2 mx-2">
-      <div className="flex flex-col justify-center lg:grid lg:grid-cols-2 justify-items-center items-center">
+      <div className="flex flex-col justify-center lg:grid lg:grid-cols-2 lg:gap-5 justify-items-center items-center">
         <img className="h-[400px]" src={searchParams.get('image')!} alt="" />
-        <div id="right-side" className='relative'>
+        <div id="right-side" className="relative">
           <div className="flex items-center justify-center gap-5">
-            <h1 className="font-bold text-center lg:text-start text-4xl max-w-[400px]">
+            <h1 className="font-bold lg:text-start text-4xl max-w-[400px]">
               {searchParams.get('title')!}
             </h1>
-            <div className='flex items-center gap-1'>
+            <div className="flex items-center gap-1">
               <p className="text-2xl mt-1">{searchParams.get('rate')}</p>
               <MdStarRate size={20} />
-              <span className='text-xs self-end'>({searchParams.get('count')})</span> 
+              <span className="text-xs self-end">
+                ({searchParams.get('count')})
+              </span>
             </div>
           </div>
           <div
             id="texto-detalhes"
-            className="flex flex-col justify-center mt-3 px-10"
+            className="flex flex-col justify-center mt-3"
           >
-            <p className='font-semibold text-3xl'>
+            <p className="font-semibold text-3xl">
               R${' '}
               {searchParams.get('price')?.includes('.')
                 ? searchParams.get('price')?.replace('.', ',')
@@ -71,22 +73,27 @@ function ProductDetails(): JSX.Element {
           >
             Adicionar ao Carrinho
           </button>
-          <p id="item-adicionado" className="hidden text-[#f2295b] absolute text-center mx-auto left-0 right-0">
-            Item adicionado ao carrinho! ☺️
-          </p>
+          <div className="h-[30px] select-none">
+            <p
+              id="item-adicionado"
+              className="hidden text-[#f2295b] relative text-center mx-auto mb-5 left-0 right-0"
+            >
+              Item adicionado ao carrinho! ☺️
+            </p>
+          </div>
+          <Link
+            href={{
+              pathname: '/',
+              query: {
+                stateCartItems: JSON.stringify(cartItems),
+              },
+            }}
+            className="block bg-[#f2295b] w-[100px] text-center rounded-lg text-lg cursor-pointer py-2 px-4 mx-auto"
+          >
+            Voltar
+          </Link>
         </div>
       </div>
-      <Link
-        href={{
-          pathname: '/',
-          query: {
-            stateCartItems: JSON.stringify(cartItems),
-          },
-        }}
-        className="bg-[#f2295b] w-[100px] text-center rounded-lg text-lg cursor-pointer py-2 px-4 "
-      >
-        Voltar
-      </Link>
     </div>
   );
 }
